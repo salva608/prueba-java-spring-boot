@@ -1,45 +1,47 @@
 # TalentBoard 🚀
-> **Sistema Inteligente de Gestión de Vacantes y Postulaciones**
+> **Intelligent Job Vacancy and Application Management System**
+>
+> **GitHub Repository:** https://github.com/salva608/prueba-java-spring-boot.git
 
-TalentBoard es una aplicación web desarrollada con **Spring Boot, Thymeleaf y PostgreSQL**, diseñada para centralizar y automatizar los procesos de selección de personal. El proyecto está completamente contenerizado utilizando **Docker** y **Docker Compose**, lo que garantiza un despliegue inmediato en cualquier entorno local.
-
----
-
-## 👥 Roles del Sistema
-
-El sistema implementa seguridad a nivel de vistas y rutas (`Spring Security`), dividiéndose en tres flujos principales:
-
-* **Candidato:** Registro público plano. Permite visualizar las vacantes disponibles, ver detalles de las ofertas y postularse adjuntando notas.
-* **Reclutador:** Panel de control privado (`Dashboard`) para gestionar el ciclo de vida de las vacantes (`OPEN` / `CLOSED`) y avanzar los estados de las postulaciones recibidas (`SCREENING`, `INTERVIEWING`, `OFFER`, `REJECTED`).
-* **Administrador:** Comparte la gestión global del Reclutador pero con el permiso exclusivo de dar de alta y registrar nuevas cuentas de Reclutadores desde el panel de control, protegiendo el acceso público.
+TalentBoard is a web application developed with **Spring Boot, Thymeleaf, and PostgreSQL**, designed to centralize and automate recruitment processes. The project is fully containerized using **Docker** and **Docker Compose**, ensuring an immediate deployment in any local environment.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 👥 System Roles
+
+The system implements security at the view and route level (`Spring Security`), dividing into three main flows:
+
+* **Candidate:** Plain public registration. Allows viewing available vacancies, seeing offer details, and applying by attaching notes.
+* **Recruiter:** Private control panel (`Dashboard`) to manage the vacancy lifecycle (`OPEN` / `CLOSED`) and advance the status of received applications (`SCREENING`, `INTERVIEWING`, `OFFER`, `REJECTED`).
+* **Administrator:** Shares the global management of the Recruiter but with the exclusive permission to onboard and register new Recruiter accounts from the control panel, protecting public access.
+
+---
+
+## 🛠️ Technologies Used
 
 * **Backend:** Java 21, Spring Boot 3.x, Spring Security, Spring Data JPA.
-* **Frontend:** HTML5, Thymeleaf (Renderizado dinámico en servidor).
-* **Base de Datos:** PostgreSQL 15.
-* **Contenerización:** Docker & Docker Compose (Multi-stage build con Maven y JRE ligero).
+* **Frontend:** HTML5, Thymeleaf (Server-side dynamic rendering).
+* **Database:** PostgreSQL 15.
+* **Containerization:** Docker & Docker Compose (Multi-stage build with Maven and lightweight JRE).
 
 ---
 
-## 🐳 Arquitectura de Contenedores
+## 🐳 Container Architecture
 
-El despliegue se compone de dos servicios conectados mediante una red interna aislada (`talentboard_network`):
+The deployment consists of two services connected via an isolated internal network (`talentboard_network`):
 
-1.  **`talentboard_db_container`**: Instancia de PostgreSQL expuesta localmente en el puerto `5432`.
-2.  **`talentboard_app_container`**: Aplicación Spring Boot que compila el código fuente y expone la interfaz web en el puerto `8080`.
+1. **`talentboard_db_container`**: PostgreSQL instance exposed locally on port `5432`.
+2. **`talentboard_app_container`**: Spring Boot application that compiles the source code and exposes the web interface on port `8080`.
 
 ---
 
-## 🚀 Requisitos Previos y Despliegue Local
+## 🚀 Prerequisites and Local Deployment
 
-Para levantar el proyecto completo no necesitas instalar Java, Maven ni PostgreSQL en tu sistema operativo, únicamente debes tener instalado **Docker** y **Docker Compose**.
+To spin up the entire project, you do not need to install Java, Maven, or PostgreSQL on your operating system; you only need to have **Docker** and **Docker Compose** installed.
 
-### Pasos para ejecutar:
+### Steps to run:
 
-1. Clona o descarga este repositorio y ubícate en la carpeta raíz del proyecto.
-2. Abre una terminal y ejecuta el siguiente comando para compilar y levantar el entorno:
+1. Clone or download this repository (`git clone https://github.com/salva608/prueba-java-spring-boot.git`) and navigate to the project's root folder.
+2. Open a terminal and run the following command to compile and bring up the environment:
    ```bash
    docker compose up --build
