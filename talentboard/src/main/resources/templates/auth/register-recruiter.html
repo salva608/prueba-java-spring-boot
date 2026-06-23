@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TalentBoard - Register Recruiter</title>
+</head>
+<body>
+<h2>Add New Recruiter Account</h2>
+<hr/>
+
+<form th:action="@{/admin/register-recruiter}" method="post">
+    <div>
+        <label>Username:</label><br/>
+        <input type="text" name="username" required placeholder="Enter username..."/>
+    </div>
+    <br/>
+    <div>
+        <label>Password:</label><br/>
+        <input type="password" name="password" required placeholder="Enter secure password..."/>
+    </div>
+    <br/>
+    <button type="submit" style="background-color: #008CBA; color: white; padding: 5px 15px;">
+        Save Recruiter Account
+    </button>
+</form>
+
+<br/>
+<a href="/recruiter/dashboard">Cancel and return</a>
+</body>
+</html>

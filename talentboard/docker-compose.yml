@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: talentboard_db_container
+    environment:
+      POSTGRES_DB: talentboard_db
+      POSTGRES_USER: salva_user
+      POSTGRES_PASSWORD: xpqretz6090**
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - talentboard_network
+
+  app:
+    build: .
+    container_name: talentboard_app_container
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/talentboard_db
+      - SPRING_DATASOURCE_USERNAME=salva_user
+      - SPRING_DATASOURCE_PASSWORD=xpqretz6090**
+    depends_on:
+      - postgres_db
+    networks:
+      - talentboard_network
+
+volumes:
+  postgres_data:
+
+networks:
+  talentboard_network:

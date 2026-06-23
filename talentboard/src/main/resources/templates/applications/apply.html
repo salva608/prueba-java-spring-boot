@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TalentBoard - Apply Now</title>
+</head>
+<body>
+<h2>Apply for this Position</h2>
+<hr/>
+
+<p>You are applying for: <strong th:text="${vacancy.title}">Vacancy Title</strong></p>
+
+<form th:action="@{/applications/apply}" method="post">
+    <input type="hidden" name="vacancyId" th:value="${vacancy.id}" />
+    <input type="hidden" name="candidateId" value="1" />
+
+    <div>
+        <label>Cover Letter / Notes:</label><br/>
+        <textarea name="notes" rows="6" cols="50" placeholder="Write your presentation or notes here..."></textarea>
+    </div>
+
+    <br/>
+    <button type="submit">Submit Application</button>
+</form>
+
+<br/>
+<a href="/vacancies">Cancel and return</a>
+</body>
+</html>

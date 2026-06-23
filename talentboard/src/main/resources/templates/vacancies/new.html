@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TalentBoard - Create Vacancy</title>
+</head>
+<body>
+<h2>Create New Vacancy</h2>
+
+<form th:action="@{/vacancies/new}" method="post">
+    <input type="hidden" name="recruiterId" value="1" />
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title" required />
+    </div>
+    <div>
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+    </div>
+    <div>
+        <label>Category / Area:</label>
+        <input type="text" name="category" required />
+    </div>
+    <div>
+        <label>Work Mode:</label>
+        <select name="workMode" required>
+            <option value="REMOTE">Remote</option>
+            <option value="HYBRID">Hybrid</option>
+            <option value="ONSITE">On-site</option>
+        </select>
+    </div>
+    <div>
+        <label>Salary (Optional):</label>
+        <input type="number" name="salary" step="0.01" />
+    </div>
+    <br/>
+    <button type="submit">Publish Vacancy</button>
+</form>
+
+<br/>
+<a href="/vacancies">Back to List</a>
+</body>
+</html>

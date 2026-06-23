@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recruiter & Admin Dashboard</title>
+</head>
+<body>
+<div style="float: right;">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" style="background-color: #ff4d4d; color: white;">Logout</button>
+    </form>
+</div>
+
+<h2>Dashboard Control Panel</h2>
+<hr/>
+
+<div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+    <a href="/admin/register-recruiter">
+        <button style="background-color: #008CBA; color: white; padding: 10px; margin-bottom: 15px; cursor: pointer;">
+            + Register New Recruiter
+        </button>
+    </a>
+</div>
+
+<h3>Vacancies Management</h3>
+<a href="/vacancies/new"><button style="background-color: #4CAF50; color: white;">+ Create New Vacancy</button></a>
+<br/><br/>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Work Mode</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="v : ${vacancies}">
+        <td th:text="${v.title}"></td>
+        <td th:text="${v.category}"></td>
+        <td th:text="${v.workMode}"></td>
+        <td th:text="${v.status}"></td>
+        <td>
+            <form th:action="@{'/vacancies/' + ${v.id} + '/status'}" method="post" style="display:inline;">
+                <select name="status" required>
+                    <option value="">Change Status...</option>
+                    <option value="OPEN">Open</option>
+                    <option value="CLOSED">Close</option>
+                </select>
+                <button type="submit" style="font-size: 11px; margin-left: 5px;">Go</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/><hr/>
+
+<h3>Applications Received</h3>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Candidate</th>
+        <th>Vacancy</th>
+        <th>Applied At</th>
+        <th>Notes</th>
+        <th>Current Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="app : ${applications}">
+        <td th:text="${app.candidate.username}"></td>
+        <td th:text="${app.vacancy.title}"></td>
+        <td th:text="${app.appliedAt}"></td>
+        <td th:text="${app.notes}"></td>
+        <td><strong th:text="${app.status}"></strong></td>
+        <td>
+            <form th:action="@{'/applications/' + ${app.id} + '/status'}" method="post" style="display:inline;">
+                <select name="newStatus" required>
+                    <option value="">Advance stage...</option>
+                    <option value="SCREENING">Reviewed (Screening)</option>
+                    <option value="INTERVIEWING">Interviewing</option>
+                    <option value="OFFER">Offer</option>
+                    <option value="REJECTED">Reject</option>
+                </select>
+                <button type="submit" style="font-size: 11px; margin-left: 5px;">Go</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

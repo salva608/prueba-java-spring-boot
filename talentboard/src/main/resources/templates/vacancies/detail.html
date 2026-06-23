@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vacancy Details</title>
+</head>
+<body>
+<h2>Vacancy Details</h2>
+<hr/>
+<p><strong>Title:</strong> <span th:text="${vacancy.title}"></span></p>
+<p><strong>Description:</strong> <span th:text="${vacancy.description}"></span></p>
+<p><strong>Category:</strong> <span th:text="${vacancy.category}"></span></p>
+<p><strong>Work Mode:</strong> <span th:text="${vacancy.workMode}"></span></p>
+<p><strong>Salary:</strong> <span th:text="${vacancy.salary != null ? vacancy.salary : 'Not specified'}"></span></p>
+<p><strong>Status:</strong> <span th:text="${vacancy.status}"></span></p>
+<p><strong>Published At:</strong> <span th:text="${vacancy.createdAt}"></span></p>
+<hr/>
+<a href="/vacancies"><button>Back to List</button></a>
+</body>
+</html>
